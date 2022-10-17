@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingBottom="@dimen/max_width_sponsor_item"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TableLayout
+                android:padding="@dimen/caption_padding"
+                android:background="@color/black20"
+                android:layout_margin="@dimen/title_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding"
+                    >
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/name_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/name_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/name_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/last_name_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/last_name_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/last_name_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding"
+                    android:id="@+id/sub_name_row">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/sub_name_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/sub_name_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/sub_name_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding"
+                    android:id="@+id/birth_date_row">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/birth_date_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/birth_date_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/birth_date_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/deceased_death_date"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/dead_date_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/dead_date_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding"
+                    android:id="@+id/from_row">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/from_site_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/from_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/from_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/burial_date_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/event_date_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/event_date_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/church_row"
+                    android:background="@drawable/border_bottom"
+                    android:padding="@dimen/caption_padding">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.LabelLarge"
+                        tools:text="@string/church_title"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/church_title" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        tools:text="@string/demo_text_value"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/church_value"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="center_vertical|end" />
+
+                </TableRow>
+
+                <TableRow
+                    android:padding="@dimen/caption_padding"
+                    android:id="@+id/description_row">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        tools:text="@string/demo_description"
+                        android:layout_weight="1"
+                        android:padding="@dimen/caption_padding"
+                        android:id="@+id/description_value"
+                         />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.virgendelosdoloreslacarlota.dep.views.ShareDownloadView
+        android:visibility="gone"
+        android:id="@+id/share_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:indeterminate="true"
+        style="@style/Widget.Material3.CircularProgressIndicator"
+        android:id="@+id/loading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

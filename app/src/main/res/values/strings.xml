@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">DEP La Carlota</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_notification_channel_id">DEP_CHANNEL</string>
+    <string name="home_fragment_label">D.E.P. La Carlota</string>
+
+    <string name="news_title">news_title</string>
+    <string name="news_empty_title">news_empty_title</string>
+    <string name="burials_title">burials_title</string>
+    <string name="burial_empty_title">burial_empty_title</string>
+    <string name="masses_title">masses_title</string>
+    <string name="mass_empty_title">mass_empty_title</string>
+    <string name="view_all">view_all</string>
+    <string name="burial_list">Burial List</string>
+    <string name="burial_detail">Burial detail</string>
+    <string name="mass_list">Mass List</string>
+    <string name="mass_detail">Mass Detail</string>
+    <string name="news_list">News list</string>
+    <string name="news_detail">News detail</string>
+    <string name="app_name_translate">app_name</string>
+    <string name="legals_title">Textos legales</string>
+    <string name="burial_description">burial_description</string>
+    <string name="mass_description">mass_description</string>
+    <string name="news_description">news_description</string>
+    <string name="name_title">name_title</string>
+    <string name="last_name_title">last_name_title</string>
+    <string name="sub_name_title">sub_name_title</string>
+    <string name="birth_date_title">birth_date_title</string>
+    <string name="dead_date_title">dead_date_title</string>
+    <string name="from_site_title">from_site_title</string>
+    <string name="deceased_death_date">deceased_death_date</string>
+    <string name="church_title">church_title</string>
+    <string name="demo_description">Demo of description of the app</string>
+    <string name="demo_text_value">Demo text value</string>
+    <string name="burial_date_title">burial_date_title</string>
+    <string name="mass_date_title">mass_date_title</string>
+    <string name="share">share</string>
+    <string name="download">download</string>
+    <string name="share_burial">share_burial</string>
+    <string name="share_mass">share_mass</string>
+</resources>

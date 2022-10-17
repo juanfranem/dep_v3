@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeFragment">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.home.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home">
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/"
+            tools:targetApi="m" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_BurialListFragment"
+            app:destination="@id/BurialListFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_MassListFragment"
+            app:destination="@id/MassListFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_NewsListFragment"
+            app:destination="@id/NewsListFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_SettingsListFragment"
+            app:destination="@id/SettingsListFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/BurialListFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.burial.list.BurialListFragment"
+        tools:layout="@layout/fragment_burial_list">
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/entierros"
+            tools:targetApi="m" />
+
+        <action
+            android:id="@+id/action_BurialListFragment_to_BurialDetailFragment"
+            app:destination="@id/BurialDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/BurialDetailFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailFragment"
+        tools:layout="@layout/fragment_burial_detail">
+
+        <argument
+            app:argType="string"
+            android:name="slug"/>
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/entierro/{slug}"
+            tools:targetApi="m" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MassListFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.mass.list.MassListFragment"
+        tools:layout="@layout/fragment_mass_list">
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/misas"
+            tools:targetApi="m" />
+        <action
+            android:id="@+id/action_MassListFragment_to_MassDetailFragment"
+            app:destination="@id/MassDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MassDetailFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.mass.detail.MassDetailFragment"
+        tools:layout="@layout/fragment_mass_detail">
+
+        <argument
+            app:argType="string"
+            android:name="slug"/>
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/misa/{slug}"
+            tools:targetApi="m" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/NewsListFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.news.list.NewsListFragment"
+        tools:layout="@layout/fragment_news_list">
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/noticias"
+            tools:targetApi="m" />
+        <action
+            android:id="@+id/action_NewsListFragment_to_NewsDetailFragment"
+            app:destination="@id/NewsDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/NewsDetailFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.news.detail.NewsDetailFragment"
+        tools:layout="@layout/fragment_news_detail">
+
+        <argument
+            app:argType="string"
+            android:name="slug"/>
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/noticia/{slug}"
+            tools:targetApi="m" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsListFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.list.SettingsListFragment"
+        tools:layout="@layout/fragment_settings_list">
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/legales"
+            tools:targetApi="m" />
+
+        <action
+            android:id="@+id/action_SettingsListFragment_to_SettingsDetailFragment"
+            app:destination="@id/SettingsDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsDetailFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.detail.SettingsDetailFragment"
+        tools:layout="@layout/fragment_settings_detail">
+
+        <argument
+            app:argType="string"
+            android:name="slug"/>
+
+        <deepLink android:autoVerify="true"
+            app:uri="https://laravel.virgendelosdoloreslacarlota.com/legal/{slug}"
+            tools:targetApi="m" />
+
+    </fragment>
+
+</navigation>
