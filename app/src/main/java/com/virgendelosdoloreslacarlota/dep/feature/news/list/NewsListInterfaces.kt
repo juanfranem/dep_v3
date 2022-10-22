@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.virgendelosdoloreslacarlota.dep.base.UiEffect
 import com.virgendelosdoloreslacarlota.dep.base.UiEvent
 import com.virgendelosdoloreslacarlota.dep.base.UiState
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.domain.news.News
 import kotlinx.coroutines.flow.Flow
 
@@ -27,5 +28,6 @@ class NewsListInterfaces {
         data class Success(
             val massPagingData: Flow<PagingData<News>>
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 }

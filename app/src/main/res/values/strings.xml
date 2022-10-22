@@ -34,8 +34,14 @@
     <string name="demo_text_value">Demo text value</string>
     <string name="burial_date_title">burial_date_title</string>
     <string name="mass_date_title">mass_date_title</string>
-    <string name="share">share</string>
-    <string name="download">download</string>
-    <string name="share_burial">share_burial</string>
-    <string name="share_mass">share_mass</string>
+    <string name="share">Compartir</string>
+    <string name="download">Guardar</string>
+    <string name="share_burial">Compartir esquela</string>
+    <string name="share_mass">Compartir misa</string>
+    <string name="download_error_message">Ha ocurrido un error descargando la imagen, inténtalo de nuevo mas tarde.</string>
+    <string name="download_success_message">Se ha guardado la imagen con éxito en su galería.</string>
+    <string name="error_message">Ha ocurrido un error, inténtalo de nuevo mas tarde.</string>
+    <string name="permission_required">Para descargar la imagen debes dar permisos de almacenamiento.</string>
+    <string name="notifications_warning">No recibirás notificaciones de esta app.</string>
+    <string name="notifications_success">Recibirás notificaciones de entierros y misas en tiempo real para no perderte nada.</string>
 </resources>

@@ -10,6 +10,7 @@ import com.virgendelosdoloreslacarlota.dep.adapters.NewsPagingAdapter
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.base.OnItemClickInterface
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentNewsListBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import com.virgendelosdoloreslacarlota.domain.news.News
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -59,6 +60,10 @@ class NewsListFragment : BaseFragment<NewsListInterfaces.State,
                         adapter.submitData(pagingData)
                     }
                 }
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

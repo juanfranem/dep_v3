@@ -12,23 +12,17 @@ plugins {
 android {
     signingConfigs {
         releaseKey {
-            def Properties localProps = new Properties()
+            Properties localProps = new Properties()
             localProps.load(new FileInputStream(file('../local.properties')))
-            def Properties keyProps = new Properties()
+            Properties keyProps = new Properties()
             assert localProps['keystore.props.file'];
 
             keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
 
             storeFile file(keyProps["RELEASE_STORE_FILE"])
             keyAlias keyProps["RELEASE_KEY_ALIAS"]
-            def sPassword = null
-            def kPassword = null
-            if (System.console() != null)
-                sPassword = System.console().readLine("\\\\nEnter store password ")
-            if (System.console() != null)
-                kPassword = System.console().readLine("\\\\nEnter key password ")
-            keyPassword kPassword
-            storePassword sPassword
+            keyPassword keyProps["RELEASE_KEY_PASSWORD"]
+            storePassword keyProps["RELEASE_STORE_PASSWORD"]
         }
     }
     namespace 'com.virgendelosdoloreslacarlota.dep'
@@ -50,6 +44,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [scheme: "https", host: "laravel.virgendelosdoloreslacarlota.com"]
+            signingConfig signingConfigs.releaseKey
         }
         debug {
             manifestPlaceholders = [scheme: "https", host: "laravel.virgendelosdoloreslacarlota.com"]

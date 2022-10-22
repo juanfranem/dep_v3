@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.burial.list
 import androidx.lifecycle.viewModelScope
 import com.virgendelosdoloreslacarlota.dep.base.BaseUseCase
 import com.virgendelosdoloreslacarlota.dep.base.BaseViewModel
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.dep.usecase.GetBurialListUseCase
 import com.virgendelosdoloreslacarlota.domain.translations.TranslationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,12 @@ class BurialListViewModel @Inject constructor(
                         setState {
                             BurialListInterfaces.State(
                                 BurialListInterfaces.LoadingScreenState.Success(result.getOrThrow())
+                            )
+                        }
+                    } else {
+                        setState {
+                            BurialListInterfaces.State(
+                                BurialListInterfaces.LoadingScreenState.Error
                             )
                         }
                     }

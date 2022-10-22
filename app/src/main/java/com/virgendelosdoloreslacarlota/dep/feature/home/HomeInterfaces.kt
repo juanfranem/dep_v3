@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.home
 import com.virgendelosdoloreslacarlota.dep.base.UiEffect
 import com.virgendelosdoloreslacarlota.dep.base.UiEvent
 import com.virgendelosdoloreslacarlota.dep.base.UiState
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.domain.burial.Burial
 import com.virgendelosdoloreslacarlota.domain.home.Home
 import com.virgendelosdoloreslacarlota.domain.mass.Mass
@@ -27,6 +28,7 @@ class HomeInterfaces {
         data class Success(
             val home: Home
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 
     sealed class Effect: UiEffect {

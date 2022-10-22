@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.settings.list
 import com.virgendelosdoloreslacarlota.dep.base.UiEffect
 import com.virgendelosdoloreslacarlota.dep.base.UiEvent
 import com.virgendelosdoloreslacarlota.dep.base.UiState
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.domain.legal.Legal
 
 class SettingsListInterfaces {
@@ -25,5 +26,6 @@ class SettingsListInterfaces {
         data class Success(
             val legalList: List<Legal>
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 }

@@ -10,6 +10,7 @@ import com.virgendelosdoloreslacarlota.dep.adapters.MassPagingAdapter
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.base.OnItemClickInterface
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentMassListBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import com.virgendelosdoloreslacarlota.domain.mass.Mass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -59,6 +60,10 @@ class MassListFragment : BaseFragment<MassListInterfaces.State,
                         adapter.submitData(pagingData)
                     }
                 }
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

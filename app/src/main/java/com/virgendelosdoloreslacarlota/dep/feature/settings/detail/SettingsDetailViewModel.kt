@@ -2,6 +2,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.settings.detail
 
 import androidx.lifecycle.viewModelScope
 import com.virgendelosdoloreslacarlota.dep.base.BaseViewModel
+import com.virgendelosdoloreslacarlota.dep.feature.news.list.NewsListInterfaces
 import com.virgendelosdoloreslacarlota.dep.usecase.GetLegalBySlugUseCase
 import com.virgendelosdoloreslacarlota.domain.translations.TranslationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,12 @@ class SettingsDetailViewModel @Inject constructor(
                         setState {
                             SettingsDetailInterfaces.State(
                                 SettingsDetailInterfaces.LoadingScreenState.Success(result.getOrThrow())
+                            )
+                        }
+                    } else {
+                        setState {
+                            SettingsDetailInterfaces.State(
+                                SettingsDetailInterfaces.LoadingScreenState.Error
                             )
                         }
                     }

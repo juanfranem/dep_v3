@@ -26,6 +26,7 @@
                 style="@style/Widget.Material3.Button.TextButton.Icon"
                 android:layout_weight="1"
                 app:icon="@drawable/ic_save"
+                android:text="@string/download"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
@@ -33,6 +34,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/share"
                 tools:text="@string/share"
+                android:text="@string/share"
                 app:iconGravity="top"
                 style="@style/Widget.Material3.Button.TextButton.Icon"
                 android:layout_weight="1"

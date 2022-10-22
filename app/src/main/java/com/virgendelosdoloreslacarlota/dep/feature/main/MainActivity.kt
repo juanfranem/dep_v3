@@ -25,6 +25,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.databinding.ActivityMainBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarSuccessMessage
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarWarningMessage
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -59,11 +62,8 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
-            if (isGranted) {
-
-            } else {
-                Toast.makeText(this,
-                    "Permissions is required to download the image.", Toast.LENGTH_SHORT).show()
+            if (!isGranted) {
+                binding.root.showSnackBarErrorMessage(getString(R.string.permission_required))
             }
         }
 
@@ -90,15 +90,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
                 navController.navigate(R.id.SettingsListFragment)
@@ -116,28 +112,19 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
+            binding.root.showSnackBarSuccessMessage(getString(R.string.notifications_success))
         } else {
-            // TODO: Inform user that that your app will not show notifications.
+            binding.root.showSnackBarWarningMessage(getString(R.string.notifications_warning))
         }
     }
 
     private fun askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                // TODO: display an educational UI explaining to the user the features that will be enabled
-                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                //       If the user selects "No thanks," allow the user to continue without notifications.
-            } else {
-                // Directly ask for the permission
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }

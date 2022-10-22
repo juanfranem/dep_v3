@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.home
 import androidx.lifecycle.viewModelScope
 import com.virgendelosdoloreslacarlota.dep.base.BaseUseCase
 import com.virgendelosdoloreslacarlota.dep.base.BaseViewModel
+import com.virgendelosdoloreslacarlota.dep.feature.burial.list.BurialListInterfaces
 import com.virgendelosdoloreslacarlota.dep.usecase.GetHomeUseCase
 import com.virgendelosdoloreslacarlota.domain.translations.TranslationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,12 @@ class HomeViewModel @Inject constructor(
                     setState {
                         HomeInterfaces.State(
                             HomeInterfaces.LoadingScreenState.Success(result.getOrThrow())
+                        )
+                    }
+                } else {
+                    setState {
+                        HomeInterfaces.State(
+                            HomeInterfaces.LoadingScreenState.Error
                         )
                     }
                 }

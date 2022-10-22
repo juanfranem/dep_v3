@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.mass.list
 import androidx.lifecycle.viewModelScope
 import com.virgendelosdoloreslacarlota.dep.base.BaseUseCase
 import com.virgendelosdoloreslacarlota.dep.base.BaseViewModel
+import com.virgendelosdoloreslacarlota.dep.feature.mass.detail.MassDetailInterfaces
 import com.virgendelosdoloreslacarlota.dep.usecase.GetMassListUseCase
 import com.virgendelosdoloreslacarlota.domain.translations.TranslationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,12 @@ class MassListViewModel @Inject constructor(
                         setState {
                             MassListInterfaces.State(
                                 MassListInterfaces.LoadingScreenState.Success(result.getOrThrow())
+                            )
+                        }
+                    } else {
+                        setState {
+                            MassListInterfaces.State(
+                                MassListInterfaces.LoadingScreenState.Error
                             )
                         }
                     }

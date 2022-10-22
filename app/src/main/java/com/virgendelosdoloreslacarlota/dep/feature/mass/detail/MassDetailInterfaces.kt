@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.mass.detail
 import com.virgendelosdoloreslacarlota.dep.base.UiEffect
 import com.virgendelosdoloreslacarlota.dep.base.UiEvent
 import com.virgendelosdoloreslacarlota.dep.base.UiState
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.domain.mass.Mass
 
 class MassDetailInterfaces {
@@ -25,6 +26,7 @@ class MassDetailInterfaces {
         data class Success(
             val mass: Mass
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 
 }

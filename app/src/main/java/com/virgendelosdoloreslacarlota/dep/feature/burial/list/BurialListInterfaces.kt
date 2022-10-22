@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.virgendelosdoloreslacarlota.dep.base.UiEffect
 import com.virgendelosdoloreslacarlota.dep.base.UiEvent
 import com.virgendelosdoloreslacarlota.dep.base.UiState
+import com.virgendelosdoloreslacarlota.dep.feature.burial.detail.BurialDetailInterfaces
 import com.virgendelosdoloreslacarlota.domain.burial.Burial
 import kotlinx.coroutines.flow.Flow
 
@@ -27,5 +28,6 @@ class BurialListInterfaces {
         data class Success(
             val burialPagingData: Flow<PagingData<Burial>>
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 }

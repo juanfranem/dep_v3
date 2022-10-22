@@ -31,6 +31,12 @@ class BurialDetailViewModel @Inject constructor(
                                 BurialDetailInterfaces.LoadingScreenState.Success(result.getOrThrow())
                             )
                         }
+                    } else {
+                        setState {
+                            BurialDetailInterfaces.State(
+                                BurialDetailInterfaces.LoadingScreenState.Error
+                            )
+                        }
                     }
                 }
             }

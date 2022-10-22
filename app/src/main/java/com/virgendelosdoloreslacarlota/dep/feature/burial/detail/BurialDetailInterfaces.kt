@@ -25,6 +25,7 @@ class BurialDetailInterfaces {
         data class Success(
             val burial: Burial
         ): LoadingScreenState()
+        object Error: LoadingScreenState()
     }
 
 }

@@ -13,6 +13,7 @@ import com.virgendelosdoloreslacarlota.dep.adapters.NewsAdapter
 import com.virgendelosdoloreslacarlota.dep.adapters.SponsorAdapter
 import com.virgendelosdoloreslacarlota.dep.base.*
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentHomeBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import com.virgendelosdoloreslacarlota.domain.burial.Burial
 import com.virgendelosdoloreslacarlota.domain.mass.Mass
 import com.virgendelosdoloreslacarlota.domain.news.News
@@ -105,6 +106,10 @@ class HomeFragment : BaseFragment<
                 massAdapter.submitList(home.mass)
                 newsAdapter.submitList(home.news)
                 sponsorAdapter.submitList(home.sponsors)
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

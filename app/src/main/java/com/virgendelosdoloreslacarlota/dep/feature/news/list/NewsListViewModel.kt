@@ -3,6 +3,7 @@ package com.virgendelosdoloreslacarlota.dep.feature.news.list
 import androidx.lifecycle.viewModelScope
 import com.virgendelosdoloreslacarlota.dep.base.BaseUseCase
 import com.virgendelosdoloreslacarlota.dep.base.BaseViewModel
+import com.virgendelosdoloreslacarlota.dep.feature.news.detail.NewsDetailInterfaces
 import com.virgendelosdoloreslacarlota.dep.usecase.GetNewsListUseCase
 import com.virgendelosdoloreslacarlota.domain.translations.TranslationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,12 @@ class NewsListViewModel @Inject constructor(
                         setState {
                             NewsListInterfaces.State(
                                 NewsListInterfaces.LoadingScreenState.Success(result.getOrThrow())
+                            )
+                        }
+                    } else {
+                        setState {
+                            NewsListInterfaces.State(
+                                NewsListInterfaces.LoadingScreenState.Error
                             )
                         }
                     }

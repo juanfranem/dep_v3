@@ -10,6 +10,7 @@ import coil.load
 import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentBurialDetailBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,16 +73,13 @@ class BurialDetailFragment : BaseFragment<BurialDetailInterfaces.State,
                         binding.churchRow.background = null
                     }
                     binding.shareView.setOnSaveClickListener(requireActivity(), image)
-                    binding.shareView.setShareText(
-                        viewModel.getTranslation(getString(R.string.share))
-                    )
-                    binding.shareView.setSaveText(
-                        viewModel.getTranslation(getString(R.string.download))
-                    )
-                    binding.shareView.setOnShareClickListener(url,
-                    viewModel.getTranslation(getString(R.string.share_burial)))
+                    binding.shareView.setOnShareClickListener(url, getString(R.string.share_burial))
                 }
                 setToolbarTitle(state.currentDataState.burial.deceased.fullName)
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

@@ -5,8 +5,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentSettingsDetailBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,6 +44,10 @@ class SettingsDetailFragment : BaseFragment<SettingsDetailInterfaces.State,
                 )
                 binding.body.setBackgroundColor(Color.TRANSPARENT)
                 setToolbarTitle(state.currentDataState.legal.title)
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

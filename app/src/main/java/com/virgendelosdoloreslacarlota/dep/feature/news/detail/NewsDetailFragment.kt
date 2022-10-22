@@ -11,6 +11,7 @@ import coil.load
 import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentNewsDetailBinding
+import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,12 +47,6 @@ class NewsDetailFragment : BaseFragment<NewsDetailInterfaces.State,
                 setToolbarTitle(state.currentDataState.news.title)
                 binding.shareView.setOnSaveClickListener(requireActivity(),
                     state.currentDataState.news.image)
-                binding.shareView.setShareText(
-                    viewModel.getTranslation(getString(R.string.share))
-                )
-                binding.shareView.setSaveText(
-                    viewModel.getTranslation(getString(R.string.download))
-                )
                 binding.title.text = state.currentDataState.news.title
                 binding.content.setBackgroundColor(Color.TRANSPARENT)
                 binding.content.isScrollContainer = false
@@ -63,6 +58,10 @@ class NewsDetailFragment : BaseFragment<NewsDetailInterfaces.State,
                     state.currentDataState.news.url,
                     ""
                 )
+            }
+            else -> {
+                binding.loading.isVisible = false
+                binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
     }

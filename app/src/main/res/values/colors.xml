@@ -6,4 +6,7 @@
     <color name="primaryColor">#282828</color>
     <color name="black20">#0D000000</color>
     <color name="black40">#40000000</color>
+    <color name="red">#F44336</color>
+    <color name="yellow">#FF9800</color>
+    <color name="green">#4CAF50</color>
 </resources>

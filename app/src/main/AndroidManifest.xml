@@ -19,6 +19,9 @@
         android:theme="@style/Theme.DEPLaCarlota"
         tools:targetApi="31">
         <activity
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
             android:name=".feature.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.DEPLaCarlota">
@@ -45,11 +48,11 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher_round" />
+            android:resource="@mipmap/ic_launcher_foreground" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/design_default_color_primary" />
+            android:resource="@color/black" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
