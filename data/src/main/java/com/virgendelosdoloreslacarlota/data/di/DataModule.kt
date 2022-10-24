@@ -3,6 +3,7 @@
 package com.virgendelosdoloreslacarlota.data.di
 
 import android.content.Context
+import android.util.Log
 import com.virgendelosdoloreslacarlota.data.BuildConfig
 import com.virgendelosdoloreslacarlota.data.repository.*
 import com.virgendelosdoloreslacarlota.data.repository.BurialRepositoryImpl
@@ -50,7 +51,11 @@ class DataModule {
     fun provideHttpClient(json: Json): HttpClient = HttpClient(Android) {
         expectSuccess = true
         install(Logging) {
-            logger = Logger.DEFAULT
+            logger = object: Logger {
+                override fun log(message: String) {
+                    Log.d("AppHttp", message)
+                }
+            }
             level = LogLevel.ALL
         }
         engine {}

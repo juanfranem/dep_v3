@@ -6,7 +6,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
 import com.virgendelosdoloreslacarlota.dep.adapters.MassPagingAdapter
+import com.virgendelosdoloreslacarlota.dep.analytics.ScreenEvent
+import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.base.OnItemClickInterface
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentMassListBinding
@@ -15,6 +18,7 @@ import com.virgendelosdoloreslacarlota.domain.mass.Mass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MassListFragment : BaseFragment<MassListInterfaces.State,
@@ -23,9 +27,13 @@ class MassListFragment : BaseFragment<MassListInterfaces.State,
 
     override val viewModel: MassListViewModel by viewModels()
 
+    @Inject
+    lateinit var tracker: Tracker
+
     private val adapter by lazy {
         MassPagingAdapter(object : OnItemClickInterface<Mass> {
             override fun onClick(item: Mass) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 findNavController().navigate(Uri.parse(item.url))
             }
         })
@@ -40,6 +48,7 @@ class MassListFragment : BaseFragment<MassListInterfaces.State,
         super.onResume()
         setToolbarTitle(viewModel.getTranslation(getString(R.string.masses_title)),
             viewModel.getTranslation(getString(R.string.mass_description)))
+        tracker.setScreen(ScreenEvent.MassList)
     }
 
     override fun handleState(state: MassListInterfaces.State) {

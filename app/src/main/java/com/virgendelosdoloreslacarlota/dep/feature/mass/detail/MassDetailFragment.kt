@@ -1,5 +1,7 @@
 package com.virgendelosdoloreslacarlota.dep.feature.mass.detail
 
+import android.os.Build
+import android.text.Html
 import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -8,10 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
+import com.virgendelosdoloreslacarlota.dep.analytics.ScreenEvent
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentMassDetailBinding
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MassDetailFragment : BaseFragment<MassDetailInterfaces.State,
@@ -19,7 +24,8 @@ class MassDetailFragment : BaseFragment<MassDetailInterfaces.State,
     (FragmentMassDetailBinding::inflate) {
     override val viewModel: MassDetailViewModel by viewModels()
     private val args: MassDetailFragmentArgs by navArgs()
-
+    @Inject
+    lateinit var tracker: Tracker
     override fun viewCreated() {
         viewModel.setEvent(MassDetailInterfaces.Event.LoadData(args.slug))
         binding.birthDateTitle.setTranslation(R.string.birth_date_title)
@@ -59,7 +65,12 @@ class MassDetailFragment : BaseFragment<MassDetailInterfaces.State,
                     binding.birthDateValue.text = deceased.birthDate
                     binding.deadDateValue.text = deceased.deathDate
                     binding.fromValue.text = deceased.from
-                    binding.descriptionValue.text = deceased.description
+                    binding.descriptionValue.text =
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            Html.fromHtml(deceased.description, Html.FROM_HTML_MODE_LEGACY)
+                        } else {
+                            Html.fromHtml(deceased.description)
+                        }
                     binding.lastNameValue.text = deceased.lastName
                     binding.subNameValue.text = deceased.subName
                     binding.nameValue.text = deceased.name
@@ -82,6 +93,11 @@ class MassDetailFragment : BaseFragment<MassDetailInterfaces.State,
                 binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        tracker.setScreen(ScreenEvent.MassDetail(args.slug))
     }
 
     override fun handleEffect(effect: MassDetailInterfaces.Effect) {

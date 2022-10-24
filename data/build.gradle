@@ -21,12 +21,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "URL_BASE", "\"https://laravel.virgendelosdoloreslacarlota.com\""
-            buildConfigField "String", "HTTP_URL_BASE", "\"laravel.virgendelosdoloreslacarlota.com/api\""
+            buildConfigField "String", "URL_BASE", "\"https://virgendelosdoloreslacarlota.com\""
+            buildConfigField "String", "HTTP_URL_BASE", "\"virgendelosdoloreslacarlota.com/api\""
         }
         debug {
-            buildConfigField "String", "URL_BASE", "\"https://laravel.virgendelosdoloreslacarlota.com\""
-            buildConfigField "String", "HTTP_URL_BASE", "\"laravel.virgendelosdoloreslacarlota.com/api\""
+            buildConfigField "String", "URL_BASE", "\"https://virgendelosdoloreslacarlota.com\""
+            buildConfigField "String", "HTTP_URL_BASE", "\"virgendelosdoloreslacarlota.com/api\""
         }
     }
     compileOptions {

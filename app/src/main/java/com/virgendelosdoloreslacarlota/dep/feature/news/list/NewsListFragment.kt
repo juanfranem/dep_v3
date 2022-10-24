@@ -6,7 +6,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
 import com.virgendelosdoloreslacarlota.dep.adapters.NewsPagingAdapter
+import com.virgendelosdoloreslacarlota.dep.analytics.ScreenEvent
+import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.base.OnItemClickInterface
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentNewsListBinding
@@ -15,6 +18,7 @@ import com.virgendelosdoloreslacarlota.domain.news.News
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsListFragment : BaseFragment<NewsListInterfaces.State,
@@ -23,9 +27,14 @@ class NewsListFragment : BaseFragment<NewsListInterfaces.State,
 
     override val viewModel: NewsListViewModel by viewModels()
 
+    @Inject
+    lateinit var tracker: Tracker
+
+
     private val adapter by lazy {
         NewsPagingAdapter(object : OnItemClickInterface<News> {
             override fun onClick(item: News) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 findNavController().navigate(Uri.parse(item.url))
             }
         })
@@ -40,6 +49,7 @@ class NewsListFragment : BaseFragment<NewsListInterfaces.State,
         super.onResume()
         setToolbarTitle(viewModel.getTranslation(getString(R.string.news_title)),
             viewModel.getTranslation(getString(R.string.news_description)))
+        tracker.setScreen(ScreenEvent.NewsList)
     }
 
     override fun handleState(state: NewsListInterfaces.State) {

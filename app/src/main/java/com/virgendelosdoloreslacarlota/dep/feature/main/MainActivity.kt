@@ -1,6 +1,8 @@
 package com.virgendelosdoloreslacarlota.dep.feature.main
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -20,24 +22,33 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
+import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
 import com.virgendelosdoloreslacarlota.dep.databinding.ActivityMainBinding
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarSuccessMessage
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarWarningMessage
+import com.virgendelosdoloreslacarlota.dep.services.FirebaseTokenService
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
+    @Inject
+    lateinit var tracker: Tracker
     private val viewModel: MainViewModel by viewModels()
+
+    @Inject
+    lateinit var firebaseTokenService: FirebaseTokenService
 
     private val navController: NavController by lazy {
         val navHostFragment =
@@ -56,6 +67,19 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         askNotificationPermission()
         viewModel.setEvent(MainInterfaces.Event.LoadTranslations)
+        firebaseTokenService.sendCurrentTokenToServer()
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager = NotificationManagerCompat.from(this)
+            val channel = NotificationChannel(
+                getString(R.string.default_notification_channel_id),
+                "D.E.P. La Carlota",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     val writePermissionLauncher =
@@ -97,7 +121,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                navController.navigate(R.id.SettingsListFragment)
+                tracker.setEvent(UserEvents.SettingsTap)
+                navController.navigate(R.id.SettingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -112,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
+            createNotificationChannel()
             binding.root.showSnackBarSuccessMessage(getString(R.string.notifications_success))
         } else {
             binding.root.showSnackBarWarningMessage(getString(R.string.notifications_warning))
@@ -126,7 +152,11 @@ class MainActivity : AppCompatActivity() {
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                createNotificationChannel()
             }
+        } else {
+            createNotificationChannel()
         }
     }
 

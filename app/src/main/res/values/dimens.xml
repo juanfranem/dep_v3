@@ -3,6 +3,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="title_padding">18dp</dimen>
     <dimen name="caption_padding">4dp</dimen>
-    <dimen name="max_width_event_item">180dp</dimen>
+    <dimen name="max_width_event_item">210dp</dimen>
     <dimen name="max_width_sponsor_item">120dp</dimen>
 </resources>

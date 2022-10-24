@@ -26,41 +26,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TableLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:padding="@dimen/caption_padding"
                 android:background="@color/black20"
                 android:layout_margin="@dimen/title_padding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TableRow
-                    android:background="@drawable/border_bottom"
+                <LinearLayout
+                    android:id="@+id/name_row"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:padding="@dimen/caption_padding"
-                    >
+                    android:background="@drawable/border_bottom"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/name_title"
-                        android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
                         android:id="@+id/name_title" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        tools:text="@string/demo_text_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        tools:text="@string/demo_text_value"
                         android:padding="@dimen/caption_padding"
                         android:id="@+id/name_value"
                         style="@style/TextAppearance.Material3.BodySmall"
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/last_name_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/name_row"
                     android:background="@drawable/border_bottom"
                     android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/last_name_title"
                         android:layout_weight="1"
@@ -68,6 +83,8 @@
                         android:id="@+id/last_name_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -76,14 +93,20 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/sub_name_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/last_name_row"
                     android:background="@drawable/border_bottom"
-                    android:padding="@dimen/caption_padding"
-                    android:id="@+id/sub_name_row">
+                    android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/sub_name_title"
                         android:layout_weight="1"
@@ -91,6 +114,8 @@
                         android:id="@+id/sub_name_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -99,14 +124,20 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/birth_date_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/sub_name_row"
                     android:background="@drawable/border_bottom"
-                    android:padding="@dimen/caption_padding"
-                    android:id="@+id/birth_date_row">
+                    android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/birth_date_title"
                         android:layout_weight="1"
@@ -114,6 +145,8 @@
                         android:id="@+id/birth_date_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -122,13 +155,20 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/deceased_date_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/birth_date_row"
                     android:background="@drawable/border_bottom"
                     android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/deceased_death_date"
                         android:layout_weight="1"
@@ -136,6 +176,8 @@
                         android:id="@+id/dead_date_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -144,14 +186,20 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/from_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/deceased_date_row"
                     android:background="@drawable/border_bottom"
-                    android:padding="@dimen/caption_padding"
-                    android:id="@+id/from_row">
+                    android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/from_site_title"
                         android:layout_weight="1"
@@ -159,6 +207,8 @@
                         android:id="@+id/from_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -167,20 +217,29 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
+                    android:id="@+id/event_date_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/from_row"
                     android:background="@drawable/border_bottom"
                     android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
-                        tools:text="@string/burial_date_title"
+                        tools:text="@string/mass_date_title"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
                         android:id="@+id/event_date_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -189,14 +248,20 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
                     android:id="@+id/church_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/event_date_row"
                     android:background="@drawable/border_bottom"
                     android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.Material3.LabelLarge"
                         tools:text="@string/church_title"
                         android:layout_weight="1"
@@ -204,6 +269,8 @@
                         android:id="@+id/church_title" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         tools:text="@string/demo_text_value"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
@@ -212,23 +279,29 @@
                         android:textAlignment="viewEnd"
                         android:layout_gravity="center_vertical|end" />
 
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
-                    android:padding="@dimen/caption_padding"
-                    android:id="@+id/description_row">
+                <LinearLayout
+                    android:id="@+id/description_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/church_row"
+                    android:padding="@dimen/caption_padding">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
                         style="@style/TextAppearance.Material3.BodySmall"
                         tools:text="@string/demo_description"
                         android:layout_weight="1"
                         android:padding="@dimen/caption_padding"
                         android:id="@+id/description_value"
-                         />
+                        />
 
-                </TableRow>
+                </LinearLayout>
 
-            </TableLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

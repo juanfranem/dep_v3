@@ -33,8 +33,8 @@ android {
         minSdk 21
         targetSdk 33
         compileSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 7
+        versionName "4.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,11 +43,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [scheme: "https", host: "laravel.virgendelosdoloreslacarlota.com"]
+            manifestPlaceholders = [scheme: "https", host: "virgendelosdoloreslacarlota.com"]
             signingConfig signingConfigs.releaseKey
         }
         debug {
-            manifestPlaceholders = [scheme: "https", host: "laravel.virgendelosdoloreslacarlota.com"]
+            manifestPlaceholders = [scheme: "https", host: "virgendelosdoloreslacarlota.com"]
         }
     }
     compileOptions {

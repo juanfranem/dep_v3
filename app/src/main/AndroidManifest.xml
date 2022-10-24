@@ -48,11 +48,11 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher_foreground" />
+            android:resource="@drawable/ic_notification" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/black" />
+            android:resource="@color/white" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
@@ -61,6 +61,10 @@
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
+
+        <meta-data android:name="google_analytics_automatic_screen_reporting_enabled"
+            android:value="false" />
+
     </application>
 
 </manifest>

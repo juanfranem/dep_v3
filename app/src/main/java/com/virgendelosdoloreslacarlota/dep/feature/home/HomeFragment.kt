@@ -7,10 +7,14 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
 import com.virgendelosdoloreslacarlota.dep.adapters.BurialAdapter
 import com.virgendelosdoloreslacarlota.dep.adapters.MassAdapter
 import com.virgendelosdoloreslacarlota.dep.adapters.NewsAdapter
 import com.virgendelosdoloreslacarlota.dep.adapters.SponsorAdapter
+import com.virgendelosdoloreslacarlota.dep.analytics.ItemType
+import com.virgendelosdoloreslacarlota.dep.analytics.ScreenEvent
+import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
 import com.virgendelosdoloreslacarlota.dep.base.*
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentHomeBinding
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
@@ -19,6 +23,7 @@ import com.virgendelosdoloreslacarlota.domain.mass.Mass
 import com.virgendelosdoloreslacarlota.domain.news.News
 import com.virgendelosdoloreslacarlota.domain.sponsor.Sponsor
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<
@@ -27,9 +32,13 @@ class HomeFragment : BaseFragment<
 
     override val viewModel: HomeViewModel by viewModels()
 
+    @Inject
+    lateinit var tracker: Tracker
+
     private val burialAdapter: BurialAdapter by lazy {
         BurialAdapter(object : OnItemClickInterface<Burial> {
             override fun onClick(item: Burial) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 findNavController().navigate(Uri.parse(item.url))
             }
         })
@@ -38,6 +47,7 @@ class HomeFragment : BaseFragment<
     private val massAdapter: MassAdapter by lazy {
         MassAdapter(object : OnItemClickInterface<Mass> {
             override fun onClick(item: Mass) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 findNavController().navigate(Uri.parse(item.url))
             }
         })
@@ -46,6 +56,7 @@ class HomeFragment : BaseFragment<
     private val newsAdapter: NewsAdapter by lazy {
         NewsAdapter(object : OnItemClickInterface<News> {
             override fun onClick(item: News) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 findNavController().navigate(Uri.parse(item.url))
             }
         })
@@ -54,6 +65,7 @@ class HomeFragment : BaseFragment<
     private val sponsorAdapter: SponsorAdapter by lazy {
         SponsorAdapter(object : OnItemClickInterface<Sponsor> {
             override fun onClick(item: Sponsor) {
+                tracker.setEvent(UserEvents.ItemTap(item.url))
                 item.url?.let { openUrl(it) }
             }
         })
@@ -71,18 +83,21 @@ class HomeFragment : BaseFragment<
         )
         binding.newsView.setAdapter(newsAdapter)
         binding.burialView.titleView.setOnClickListener {
+            tracker.setEvent(UserEvents.ViewAllTap(ItemType.BURIAL))
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToBurialListFragment()
             )
         }
 
         binding.massView.titleView.setOnClickListener {
+            tracker.setEvent(UserEvents.ViewAllTap(ItemType.MASS))
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToMassListFragment()
             )
         }
 
         binding.newsView.titleView.setOnClickListener {
+            tracker.setEvent(UserEvents.ViewAllTap(ItemType.NEWS))
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToNewsListFragment()
             )
@@ -118,6 +133,7 @@ class HomeFragment : BaseFragment<
         super.onResume()
         viewModel.setEvent(HomeInterfaces.Event.LoadHome)
         setToolbarTitle(viewModel.getTranslation(getString(R.string.app_name_translate)))
+        tracker.setScreen(ScreenEvent.Home)
     }
 
     private fun loadTranslations() {

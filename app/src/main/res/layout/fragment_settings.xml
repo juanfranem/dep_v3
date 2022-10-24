@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:indeterminate="true"
+        style="@style/Widget.Material3.CircularProgressIndicator"
+        android:id="@+id/loading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_margin="@dimen/title_padding"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/legal_texts"
+        android:text="@string/legals_title"
+        style="@style/Widget.Material3.Button"
+        app:cornerRadius="@dimen/caption_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_margin="@dimen/title_padding"
+        app:layout_constraintTop_toBottomOf="@id/legal_texts"
+        android:id="@+id/notifications"
+        android:text="@string/notifications_settings"
+        style="@style/Widget.Material3.Button"
+        app:cornerRadius="@dimen/caption_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/version"
+        tools:text="1.0.0"
+        android:textAlignment="center"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_margin="@dimen/title_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

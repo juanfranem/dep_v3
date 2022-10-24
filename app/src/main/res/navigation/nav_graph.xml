@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home">
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/"
+            app:uri="https://virgendelosdoloreslacarlota.com/"
             tools:targetApi="m" />
 
         <action
@@ -25,8 +25,11 @@
             android:id="@+id/action_HomeFragment_to_NewsListFragment"
             app:destination="@id/NewsListFragment" />
         <action
-            android:id="@+id/action_HomeFragment_to_SettingsListFragment"
-            app:destination="@id/SettingsListFragment" />
+            android:id="@+id/action_HomeFragment_to_LegalsListFragment"
+            app:destination="@id/LegalsListFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
 
     </fragment>
 
@@ -36,7 +39,7 @@
         tools:layout="@layout/fragment_burial_list">
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/entierros"
+            app:uri="https://virgendelosdoloreslacarlota.com/entierros"
             tools:targetApi="m" />
 
         <action
@@ -55,7 +58,7 @@
             android:name="slug"/>
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/entierro/{slug}"
+            app:uri="https://virgendelosdoloreslacarlota.com/entierro/{slug}"
             tools:targetApi="m" />
 
     </fragment>
@@ -66,7 +69,7 @@
         tools:layout="@layout/fragment_mass_list">
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/misas"
+            app:uri="https://virgendelosdoloreslacarlota.com/misas"
             tools:targetApi="m" />
         <action
             android:id="@+id/action_MassListFragment_to_MassDetailFragment"
@@ -84,7 +87,7 @@
             android:name="slug"/>
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/misa/{slug}"
+            app:uri="https://virgendelosdoloreslacarlota.com/misa/{slug}"
             tools:targetApi="m" />
 
     </fragment>
@@ -96,7 +99,7 @@
         tools:layout="@layout/fragment_news_list">
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/noticias"
+            app:uri="https://virgendelosdoloreslacarlota.com/noticias"
             tools:targetApi="m" />
         <action
             android:id="@+id/action_NewsListFragment_to_NewsDetailFragment"
@@ -114,29 +117,29 @@
             android:name="slug"/>
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/noticia/{slug}"
+            app:uri="https://virgendelosdoloreslacarlota.com/noticia/{slug}"
             tools:targetApi="m" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/SettingsListFragment"
-        android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.list.SettingsListFragment"
+        android:id="@+id/LegalsListFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.legals.list.LegalsListFragment"
         tools:layout="@layout/fragment_settings_list">
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/legales"
+            app:uri="https://virgendelosdoloreslacarlota.com/legales"
             tools:targetApi="m" />
 
         <action
-            android:id="@+id/action_SettingsListFragment_to_SettingsDetailFragment"
-            app:destination="@id/SettingsDetailFragment" />
+            android:id="@+id/action_LegalsListFragment_to_LegalsDetailFragment"
+            app:destination="@id/LegalsDetailsFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/SettingsDetailFragment"
-        android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.detail.SettingsDetailFragment"
+        android:id="@+id/LegalsDetailsFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.legals.detail.LegalsDetailFragment"
         tools:layout="@layout/fragment_settings_detail">
 
         <argument
@@ -144,9 +147,20 @@
             android:name="slug"/>
 
         <deepLink android:autoVerify="true"
-            app:uri="https://laravel.virgendelosdoloreslacarlota.com/legal/{slug}"
+            app:uri="https://virgendelosdoloreslacarlota.com/legal/{slug}"
             tools:targetApi="m" />
 
+    </fragment>
+    
+    <fragment
+        tools:layout="@layout/fragment_settings"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.SettingsFragment"
+        android:id="@+id/SettingsFragment">
+
+
+        <action
+            android:id="@+id/action_SettingsFragment_to_LegalsListFragment"
+            app:destination="@id/LegalsListFragment" />
     </fragment>
 
 </navigation>

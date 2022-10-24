@@ -9,10 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
+import com.virgendelosdoloreslacarlota.dep.analytics.ScreenEvent
 import com.virgendelosdoloreslacarlota.dep.base.BaseFragment
 import com.virgendelosdoloreslacarlota.dep.databinding.FragmentNewsDetailBinding
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsDetailFragment : BaseFragment<NewsDetailInterfaces.State,
@@ -21,6 +24,8 @@ class NewsDetailFragment : BaseFragment<NewsDetailInterfaces.State,
     override val viewModel: NewsDetailViewModel by viewModels()
     private val args: NewsDetailFragmentArgs by navArgs()
 
+    @Inject
+    lateinit var tracker: Tracker
 
     override fun viewCreated() {
         viewModel.setEvent(NewsDetailInterfaces.Event.LoadData(args.slug))
@@ -64,6 +69,11 @@ class NewsDetailFragment : BaseFragment<NewsDetailInterfaces.State,
                 binding.root.showSnackBarErrorMessage(getString(R.string.error_message))
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        tracker.setScreen(ScreenEvent.NewsDetail(args.slug))
     }
 
     override fun handleEffect(effect: NewsDetailInterfaces.Effect) {

@@ -17,9 +17,12 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:id="@+id/image"
             android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="1:1"

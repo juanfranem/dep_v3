@@ -14,23 +14,32 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.virgendelosdoloreslacarlota.dep.R
+import com.virgendelosdoloreslacarlota.dep.Tracker
+import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
 import com.virgendelosdoloreslacarlota.dep.databinding.ViewShareDownloadBinding
 import com.virgendelosdoloreslacarlota.dep.feature.main.MainActivity
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarErrorMessage
 import com.virgendelosdoloreslacarlota.dep.helper.showSnackBarSuccessMessage
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class ShareDownloadView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAtr: Int = 0
 ): LinearLayout(context, attrs, defStyleAtr) {
+
+    @Inject
+    lateinit var tracker: Tracker
+
     private val binding = ViewShareDownloadBinding.inflate(LayoutInflater.from(context),
         this, true)
 
     fun setOnShareClickListener(url: String, text: String) {
         binding.share.setOnClickListener {
+            tracker.setEvent(UserEvents.ShareTap(url))
             ShareCompat.IntentBuilder(context)
                 .setType("text/plain")
                 .setChooserTitle(text)
@@ -46,6 +55,7 @@ class ShareDownloadView @JvmOverloads constructor(
             return
         }
         binding.save.setOnClickListener {
+            tracker.setEvent(UserEvents.DownloadTap)
             when {
                 ContextCompat.checkSelfPermission(
                     context,
