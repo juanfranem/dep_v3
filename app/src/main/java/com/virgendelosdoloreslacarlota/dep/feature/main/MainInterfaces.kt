@@ -11,7 +11,6 @@ class MainInterfaces {
     }
 
     sealed class Event: UiEvent {
-        object LoadTranslations: Event()
     }
 
     sealed class Effect: UiEffect {

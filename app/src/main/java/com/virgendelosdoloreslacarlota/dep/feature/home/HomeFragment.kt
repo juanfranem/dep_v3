@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.virgendelosdoloreslacarlota.dep.R
@@ -39,7 +40,12 @@ class HomeFragment : BaseFragment<
         BurialAdapter(object : OnItemClickInterface<Burial> {
             override fun onClick(item: Burial) {
                 tracker.setEvent(UserEvents.ItemTap(item.url))
-                findNavController().navigate(Uri.parse(item.url))
+                findNavController().navigate(Uri.parse(item.url), NavOptions.Builder()
+                    .setEnterAnim(R.anim.slide_in)
+                    .setExitAnim(R.anim.slide_out)
+                    .setPopEnterAnim(R.anim.slide_in)
+                    .setPopExitAnim(R.anim.slide_out)
+                    .build())
             }
         })
     }
@@ -48,7 +54,12 @@ class HomeFragment : BaseFragment<
         MassAdapter(object : OnItemClickInterface<Mass> {
             override fun onClick(item: Mass) {
                 tracker.setEvent(UserEvents.ItemTap(item.url))
-                findNavController().navigate(Uri.parse(item.url))
+                findNavController().navigate(Uri.parse(item.url), NavOptions.Builder()
+                    .setEnterAnim(R.anim.slide_in)
+                    .setExitAnim(R.anim.slide_out)
+                    .setPopEnterAnim(R.anim.slide_in)
+                    .setPopExitAnim(R.anim.slide_out)
+                    .build())
             }
         })
     }
@@ -57,7 +68,12 @@ class HomeFragment : BaseFragment<
         NewsAdapter(object : OnItemClickInterface<News> {
             override fun onClick(item: News) {
                 tracker.setEvent(UserEvents.ItemTap(item.url))
-                findNavController().navigate(Uri.parse(item.url))
+                findNavController().navigate(Uri.parse(item.url), NavOptions.Builder()
+                    .setEnterAnim(R.anim.slide_in)
+                    .setExitAnim(R.anim.slide_out)
+                    .setPopEnterAnim(R.anim.slide_in)
+                    .setPopExitAnim(R.anim.slide_out)
+                    .build())
             }
         })
     }

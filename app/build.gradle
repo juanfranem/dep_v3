@@ -9,20 +9,29 @@ plugins {
     id 'kotlin-kapt'
 }
 
+ext {
+    versionMajor = 4
+    versionMinor = 0
+    versionExtraMinor = 3
+}
+
 android {
     signingConfigs {
         releaseKey {
-            Properties localProps = new Properties()
-            localProps.load(new FileInputStream(file('../local.properties')))
-            Properties keyProps = new Properties()
-            assert localProps['keystore.props.file'];
-
-            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
-
-            storeFile file(keyProps["RELEASE_STORE_FILE"])
-            keyAlias keyProps["RELEASE_KEY_ALIAS"]
-            keyPassword keyProps["RELEASE_KEY_PASSWORD"]
-            storePassword keyProps["RELEASE_STORE_PASSWORD"]
+            def keyFileName = "../key.properties"
+            if (file(keyFileName).exists()) {
+                def props = new Properties()
+                file(keyFileName).withInputStream { props.load(it) }
+                storeFile file(props.getProperty("RELEASE_STORE_FILE"))
+                keyAlias props.getProperty("RELEASE_KEY_ALIAS")
+                keyPassword props.getProperty("RELEASE_KEY_PASSWORD")
+                storePassword props.getProperty("RELEASE_STORE_PASSWORD")
+            } else {
+                storeFile file(project["storeFile"])
+                keyAlias project["keyAlias"]
+                keyPassword project["keyPass"]
+                storePassword project["storePass"]
+            }
         }
     }
     namespace 'com.virgendelosdoloreslacarlota.dep'
@@ -33,16 +42,18 @@ android {
         minSdk 21
         targetSdk 33
         compileSdk 33
-        versionCode 7
-        versionName "4.0.0"
+        versionName computeVersionName()
+        versionCode computeVersionCode()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
             manifestPlaceholders = [scheme: "https", host: "virgendelosdoloreslacarlota.com"]
             signingConfig signingConfigs.releaseKey
         }
@@ -67,10 +78,10 @@ dependencies {
     def lifecycle_version = "2.5.1"
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.8.0-alpha01'
+    implementation 'com.google.android.material:material:1.8.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
@@ -101,6 +112,17 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+def computeVersionName() {
+    // Basic <major>.<minor> version name
+    return String.format('%d.%d.%d', versionMajor, versionMinor, Integer.valueOf(System.env.BUILD_NUMBER ?: versionExtraMinor))
+}
+
+// Will return 120042 for Jenkins build #42
+def computeVersionCode() {
+    // Major + minor + Jenkins build number (where available)
+    return (versionMajor * 100000) + (versionMinor * 10000) + Integer.valueOf(System.env.BUILD_NUMBER ?: versionExtraMinor)
 }
 
 kapt {

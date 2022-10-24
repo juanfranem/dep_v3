@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.Tracker
@@ -35,7 +36,14 @@ class NewsListFragment : BaseFragment<NewsListInterfaces.State,
         NewsPagingAdapter(object : OnItemClickInterface<News> {
             override fun onClick(item: News) {
                 tracker.setEvent(UserEvents.ItemTap(item.url))
-                findNavController().navigate(Uri.parse(item.url))
+                findNavController().navigate(Uri.parse(item.url),
+                    NavOptions.Builder()
+                        .setEnterAnim(R.anim.slide_in)
+                        .setExitAnim(R.anim.slide_out)
+                        .setPopEnterAnim(R.anim.slide_in)
+                        .setPopExitAnim(R.anim.slide_out)
+                        .build()
+                )
             }
         })
     }

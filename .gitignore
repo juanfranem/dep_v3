@@ -18,3 +18,4 @@ app/keyStore
 app/keyStore.jks
 app/google-services.json
 /.idea
+key.properties

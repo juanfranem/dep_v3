@@ -65,12 +65,14 @@ class MassDetailFragment : BaseFragment<MassDetailInterfaces.State,
                     binding.birthDateValue.text = deceased.birthDate
                     binding.deadDateValue.text = deceased.deathDate
                     binding.fromValue.text = deceased.from
-                    binding.descriptionValue.text =
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            Html.fromHtml(deceased.description, Html.FROM_HTML_MODE_LEGACY)
-                        } else {
-                            Html.fromHtml(deceased.description)
-                        }
+                    if (!deceased.description.isNullOrBlank()) {
+                        binding.descriptionValue.text =
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                Html.fromHtml(deceased.description, Html.FROM_HTML_MODE_LEGACY)
+                            } else {
+                                Html.fromHtml(deceased.description)
+                            }
+                    }
                     binding.lastNameValue.text = deceased.lastName
                     binding.subNameValue.text = deceased.subName
                     binding.nameValue.text = deceased.name

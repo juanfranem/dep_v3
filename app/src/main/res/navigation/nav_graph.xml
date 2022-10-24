@@ -3,7 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/HomeFragment">
+    app:startDestination="@id/SplashFragment">
+
+
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.virgendelosdoloreslacarlota.dep.feature.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            android:id="@+id/action_SplashFragment_to_main_graph"
+            app:popUpTo="@id/SplashFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/HomeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/HomeFragment"
@@ -11,23 +27,44 @@
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
 
-        <deepLink android:autoVerify="true"
+        <deepLink
+            android:autoVerify="true"
             app:uri="https://virgendelosdoloreslacarlota.com/"
             tools:targetApi="m" />
 
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_HomeFragment_to_BurialListFragment"
             app:destination="@id/BurialListFragment" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_HomeFragment_to_MassListFragment"
             app:destination="@id/MassListFragment" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_HomeFragment_to_NewsListFragment"
             app:destination="@id/NewsListFragment" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_HomeFragment_to_LegalsListFragment"
             app:destination="@id/LegalsListFragment" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_HomeFragment_to_SettingsFragment"
             app:destination="@id/SettingsFragment" />
 
@@ -43,6 +80,10 @@
             tools:targetApi="m" />
 
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_BurialListFragment_to_BurialDetailFragment"
             app:destination="@id/BurialDetailFragment" />
 
@@ -72,6 +113,10 @@
             app:uri="https://virgendelosdoloreslacarlota.com/misas"
             tools:targetApi="m" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_MassListFragment_to_MassDetailFragment"
             app:destination="@id/MassDetailFragment" />
 
@@ -102,6 +147,10 @@
             app:uri="https://virgendelosdoloreslacarlota.com/noticias"
             tools:targetApi="m" />
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_NewsListFragment_to_NewsDetailFragment"
             app:destination="@id/NewsDetailFragment" />
 
@@ -132,6 +181,10 @@
             tools:targetApi="m" />
 
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_LegalsListFragment_to_LegalsDetailFragment"
             app:destination="@id/LegalsDetailsFragment" />
 
@@ -151,7 +204,7 @@
             tools:targetApi="m" />
 
     </fragment>
-    
+
     <fragment
         tools:layout="@layout/fragment_settings"
         android:name="com.virgendelosdoloreslacarlota.dep.feature.settings.SettingsFragment"
@@ -159,8 +212,14 @@
 
 
         <action
+            app:popExitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
             android:id="@+id/action_SettingsFragment_to_LegalsListFragment"
             app:destination="@id/LegalsListFragment" />
     </fragment>
+
+
 
 </navigation>

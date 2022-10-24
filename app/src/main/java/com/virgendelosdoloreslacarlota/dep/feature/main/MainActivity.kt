@@ -24,8 +24,12 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navOptions
+import androidx.navigation.ui.NavigationUI
 import com.virgendelosdoloreslacarlota.dep.R
 import com.virgendelosdoloreslacarlota.dep.Tracker
 import com.virgendelosdoloreslacarlota.dep.analytics.UserEvents
@@ -63,11 +67,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.HomeFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
         askNotificationPermission()
-        viewModel.setEvent(MainInterfaces.Event.LoadTranslations)
         firebaseTokenService.sendCurrentTokenToServer()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.toolbar.isVisible = destination.id != R.id.SplashFragment
+        }
     }
 
     private fun createNotificationChannel() {
@@ -122,7 +128,14 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> {
                 tracker.setEvent(UserEvents.SettingsTap)
-                navController.navigate(R.id.SettingsFragment)
+                navController.navigate(R.id.SettingsFragment, null, NavOptions.Builder()
+                    .setEnterAnim(R.anim.slide_in)
+                    .setExitAnim(R.anim.slide_out)
+                    .setPopEnterAnim(R.anim.slide_in)
+                    .setPopExitAnim(R.anim.slide_out)
+                    .setPopUpTo(R.id.SettingsFragment, true)
+                    .build()
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)

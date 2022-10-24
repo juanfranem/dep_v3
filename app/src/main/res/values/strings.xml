@@ -46,4 +46,5 @@
     <string name="notifications_success">Recibirás notificaciones de entierros y misas en tiempo real para no perderte nada.</string>
     <string name="notifications_settings">Ajustes de notificaciones</string>
     <string name="settings">Ajustes</string>
+    <string name="retry">Reintentar</string>
 </resources>
